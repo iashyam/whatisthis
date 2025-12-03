@@ -1,0 +1,7 @@
+tests
+uploads
+dist
+build
+.venv
+.pytest_cache
+__pycache__
