@@ -27,16 +27,6 @@ class ConvNormAct(nn.Module):
         return x
 
 
-class DepthWiseConv(nn.Module):
-    def __init__(self,in_channels: int, out_channels: int,  kernel_size: int = 3, stride=1):
-        super().__init__()
-
-        self.conv = Conv2dNormActivation(in_channels=in_channels, out_channels=out_channels, kernel_size=3,stride=stride, groups=in_channels)
-        
-    def forward(self, x):
-        return self.conv(x)
-
-
 ## Without (No) Expenad-Squeeze (ES) BottleNeck (BN)
 class NoESBN(nn.Module):
     def __init__(self, in_channels: int, out_channels: int, expension_factor: int, stride=1, isES: bool= True):
