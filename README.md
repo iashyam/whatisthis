@@ -6,9 +6,9 @@ I have veen experimenting with Vision Models for quite a while now. I am trying 
 
 TODO:
 
-    - [x] Containerize the model with Docker. 
-    - [ ] Put automated testing with github actions. 
-    - [ ] Deploy the model to server. 
+- [x] Containerize the model with Docker. 
+- [ ] Put automated testing with github actions. 
+- [ ] Deploy the model to server. 
 
 How to use it from Docker
 
