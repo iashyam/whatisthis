@@ -6,11 +6,27 @@ I have veen experimenting with Vision Models for quite a while now. I am trying 
 
 TODO:
 
-    - [ ] Containerize the model with Docker. 
+    - [x] Containerize the model with Docker. 
     - [ ] Put automated testing with github actions. 
     - [ ] Deploy the model to server. 
 
-Contributions
+How to use it from Docker
+
+First you need to pull image from dockerhub
+
+```bash
+docker pull dokckerhub.com/iashyam/whatisthis:latest
+```
+
+Then just run, remember to map the port `5000`:
+
+```bash
+docker run -p 5000:5000 dockerhub.com/iashyam/whatisthis:latest
+```
+
+Enjoy the demo at `localhost:5000`.
+
+## Contributions
 
 This is a personal project and I am not recieving any contributions as per now. 
 
