@@ -9,11 +9,26 @@ description = "My Experiments with Vison models"
 authors = [
     { name="Shyam Sunder" }
 ]
+
 dependencies = [
+    "flask>=3.1.2",
+    "matplotlib>=3.10.7",
+    "numpy>=2.3.5",
+    "Pillow>=9.3.0",
+    "requests>=2.32.5",
     "torch",
-    "torchvision"
 ]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["models*", "utils*"]
+# [tool.uv.sources]
+#torch=[
+#	{ index = "pytorch-cpu" }
+#]
+
+#[[tool.uv.index]]
+#name = "pytorch-cpu"
+#url = "https://download.pytorch.org/whl/cpu"
+#explicit = true 
+
+#[tool.setuptools.packages.find]
+#where = ["."]
+#include = ["models*", "utils*"]
