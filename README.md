@@ -1,16 +1,20 @@
-# Vision Models
+# Whatisthis
 
-I have veen experimenting with Vision Models for quite a while now. I am trying to implement them from scartch to learn more about the neural netowrk architecture. I am also doing this to create a full end to end project, complete with automatic testing and deployment. I have done these models now
+Implemention and training of different Vision models are from scratch and use it to label any image.  
+
+## MobileNet
 
 - MobileNet V2: Paper [MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/pdf/1801.04381)
 
 TODO:
 
 - [x] Containerize the model with Docker. 
-- [ ] Put automated testing with github actions. 
+- [x] Put automated testing with github actions. 
 - [ ] Deploy the model to server. 
+- [ ] Write a ETL pipeline. 
+- [ ] Write training loop. 
 
-How to use it from Docker
+### Using through Docker
 
 First you need to pull image from dockerhub
 
