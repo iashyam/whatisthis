@@ -21,7 +21,6 @@ class Extractor:
         datas = np.asarray(dict[b"data"], dtype=np.uint8).astype(int)
         labels = np.asarray(dict[b"fine_labels"], dtype=np.uint8).astype(int)
         datas = datas.reshape(10000, 3, 32, 32)
-        datas = np.transpose(datas, (0, 2, 3, 1))  # H W C
 
         return datas, labels
 

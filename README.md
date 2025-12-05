@@ -12,7 +12,8 @@ TODO:
 - [x] Put automated testing with github actions. 
 - [ ] Deploy the model to server. 
 - [ ] Write a ETL pipeline. 
-- [ ] Write training loop. 
+- [x] Write training loop. 
+- [ ] Write documentation for ETL.
 
 ### Using through Docker
 

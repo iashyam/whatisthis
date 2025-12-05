@@ -21,13 +21,14 @@ class Trainer:
             x, y = x.to(self.device), y.to(self.device)
 
             y_pred = self.model(x)           #forward pass
-            loss = self.criterian(y, y_pred) #loss calculation
+            loss = self.criterion(y_pred, y) #loss calculation
             self.optimizer.zero_grad()     #zero grad
             loss.backward()                  #backward step
-            self.optimizer().step()
+            self.optimizer.step()
 
-            pred = y_pred.argmax(dim=1) 
-            accuracy = (y-pred).float().mean()
+            pred = y_pred.argmax(dim=0) 
+            actual = y.argmax(dim=0) 
+            accuracy = (actual==pred).float().mean()
 
             train_loss += loss
             train_accuracy += accuracy
@@ -46,19 +47,26 @@ class Trainer:
         self.model.eval()
         test_loss, test_accuracy = 0,0
 
-        for batch, (x, y) in enumerate(dataloader):
+        for batch, (x, y) in (bar := tqdm(enumerate(dataloader))):
 
             x, y = x.to(self.device), y.to(self.device)
 
             with torch.no_grad():
 
                 y_pred = self.model(x)           #forward pass
-                loss = self.criterion(y, y_pred)
-                accuracy = (y-y_pred).mean()
+                loss = self.criterion(y_pred, y)
+
+                actual = y.argmax(dim=1) 
+                pred = y_pred.argmax(dim=1) 
+                accuracy = (actual==pred).float().mean()
 
                 test_loss += loss
                 test_accuracy += accuracy
-        
+                bar.set_description_str(f"epoch: {epoch_no}")
+                bar.set_postfix_str(f"test_loss: {test_loss/(batch+1):4f}, test_accuracy: {test_accuracy/(batch+1):4f}")
+
+
+
         avg_loss = test_loss/len(dataloader)
         avg_accuracy = test_accuracy/len(dataloader)
 
