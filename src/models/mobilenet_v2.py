@@ -143,11 +143,14 @@ if __name__=='__main__':
     import matplotlib.pyplot as plt
     model = BurrahMobileNet()
     
-    model.load_state_dict(torch.load("weights/mobilenet_v2-b0353104.pth"))
+    # model.load_state_dict(torch.load("weights/mobilenet_v2-b0353104.pth"))
+    # torch.save(model.state_dict(), "weights/burrah_mobilenet_v1.pth")
     # model.load_state_dict(new_dict)
+    model.load_state_dict(torch.load("weights/burrah_mobilenet_v1.pth"))
     model.eval()
+    torch.save(model, "app/burrah_mobilenet.pkl")
     
-    image_wp = Image.open('sample_images/hen.jpeg')
+    image_wp = Image.open('../sample_images/hen.jpeg')
     # image_wp = Image.open('sample_images/dog.jpg')
     image = preprocess_image(image_wp).float()
     output = torch.softmax(model(image), dim=1)
