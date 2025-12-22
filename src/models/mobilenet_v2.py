@@ -151,7 +151,7 @@ if __name__=='__main__':
     # image_wp = Image.open('sample_images/dog.jpg')
     image = preprocess_image(image_wp).float()
     output = torch.softmax(model(image), dim=1)
-    label = torch.argmax(output).item()
+    label = int(torch.argmax(output).item())
     label = labels[label]
     print(f"Predicted {label} with {torch.max(output)*100:1f}% probablity.") 
     plt.imshow(image_wp)

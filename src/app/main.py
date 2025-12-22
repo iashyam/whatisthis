@@ -24,7 +24,7 @@ def recoganize_image(image: Image.Image):
 	with torch.no_grad():
 		pred = model(image_transfomed)
 		pred_softmax = torch.nn.functional.softmax(pred, dim=1).argmax()
-	label = labels[pred_softmax.item()]
+	label = labels[int(pred_softmax.item())]
 	return label
 
 def plot_image(image: Image.Image):

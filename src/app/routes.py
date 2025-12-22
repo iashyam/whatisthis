@@ -24,7 +24,7 @@ def predict():
     if 'image' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     file = request.files['image']
-    if file.filename == '':
+    if file.filename == '' or file.filename==None:
         return jsonify({'error': 'No selected file'}), 400
     filename = secure_filename(file.filename)
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
