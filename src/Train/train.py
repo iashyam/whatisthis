@@ -1,5 +1,6 @@
 import torch 
 from tqdm import tqdm
+import mlflow
 
 class Trainer:
 
@@ -79,7 +80,7 @@ class Trainer:
         history['test_loss'] = []
         history['train_accuracy'] = []
         history['test_accuracy'] = []
-
+        
         for i in range(n_epochs):
             
             train_loss, train_accuracy = self.training_step(i, train_dataloader)
