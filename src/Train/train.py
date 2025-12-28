@@ -1,6 +1,5 @@
 import torch 
 from tqdm import tqdm
-import mlflow
 
 class Trainer:
 
@@ -31,8 +30,8 @@ class Trainer:
             actual = y.argmax(dim=0) 
             accuracy = (actual==pred).float().mean()
 
-            train_loss += loss
-            train_accuracy += accuracy
+            train_loss += loss.item()
+            train_accuracy += accuracy.item()
 
             bar.set_description_str(f"epoch: {epoch_no}")
             bar.set_postfix_str(f"train_loss: {train_loss/(batch+1):4f}, train_accuracy: {train_accuracy/(batch+1):4f}")
@@ -61,8 +60,8 @@ class Trainer:
                 pred = y_pred.argmax(dim=1) 
                 accuracy = (actual==pred).float().mean()
 
-                test_loss += loss
-                test_accuracy += accuracy
+                test_loss += loss.item()
+                test_accuracy += accuracy.item()
                 bar.set_description_str(f"epoch: {epoch_no}")
                 bar.set_postfix_str(f"test_loss: {test_loss/(batch+1):4f}, test_accuracy: {test_accuracy/(batch+1):4f}")
 

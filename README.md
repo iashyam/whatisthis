@@ -2,18 +2,22 @@
 
 Implemention and training of different Vision models are from scratch and use it to label any image.  
 
-## MobileNet
-
-- MobileNet V2: Paper [MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/pdf/1801.04381)
-
-TODO:
-
 - [x] Containerize the model with Docker. 
 - [x] Put automated testing with github actions. 
 - [ ] Deploy the model to server. 
 - [x] Write a ETL pipeline. 
 - [x] Write training loop. 
 - [ ] Write documentation for ETL.
+- [x] Use ML Flow for experiment tracking
+- [ ] User DVC pipelines. 
+- [ ] Run some basic experiments.
+
+
+## MobileNet
+
+- MobileNet V2: Paper [MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/pdf/1801.04381)
+
+TODO:
 
 ### Using through Docker
 

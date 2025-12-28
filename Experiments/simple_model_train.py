@@ -6,13 +6,10 @@ from Train import Trainer
 from ETL import Extractor, ImageDataset
 from pathlib import Path
 import mlflow
-import os
 
 batch_size = 73
 learning_rate = 0.01
-epochs = 25
-
-print(f"cwd: {os.getcwd()}")
+epochs = 50
 
 datas, labels = Extractor(Path("Data/cifar-10-batches-py/data_batch_4")).extract()
 customdataset = ImageDataset(datas, labels)
@@ -21,7 +18,7 @@ dataloader = DataLoader(customdataset, batch_size=73, shuffle=True)
 device = "cpu"
 loss_fn =  CrossEntropyLoss()
 # trainer.train_loop(n_epochs=10, train_dataloader=dataloader, test_dataloader=dataloader)
-mlflow.set_experiment("run for CIFR10- adam")
+mlflow.set_experiment("Complex model for CIFAR-10")
 optims = {"sgd": lambda params: SGD(params),
           "adam": lambda params: Adam(params)}
 
@@ -35,8 +32,7 @@ for optim_name, optim_fn in optims.items():
         mlflow.log_param("optimizer", optim_name)
         for epoch in range(epochs):
             loss, acc = trainer.training_step(epoch, dataloader)
-            
-            print("epoch", epoch)
-            mlflow.log_metric("loss", loss.item(), step=epoch)
-            mlflow.log_metric("accuracy", acc.item(), step=epoch)
-            print(f"{epoch=}, {loss=},{acc=}")
+            mlflow.log_metric("loss", loss, step=epoch)
+            mlflow.log_metric("accuracy", acc, step=epoch)
+
+    mlflow.pytorch.log_model(model, "model-adam")

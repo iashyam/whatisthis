@@ -1,0 +1,22 @@
+artifact_path: /home/taylor/github/whatisthis/mlruns/4/models/m-78e90917487144b9a18bf1f27e2585fa/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.13.5
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.9.1+cpu
+mlflow_version: 3.8.0
+model_id: m-78e90917487144b9a18bf1f27e2585fa
+model_size_bytes: 647683
+model_uuid: m-78e90917487144b9a18bf1f27e2585fa
+prompts: null
+utc_time_created: '2025-12-28 05:47:22.953931'
