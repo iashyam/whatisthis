@@ -6,10 +6,8 @@ from main import recoganize_image
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
-# Ensure upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Dummy label prediction function (replace with your model logic)
 def predict_label(image_path):
     from PIL import Image
     image = Image.open(image_path)

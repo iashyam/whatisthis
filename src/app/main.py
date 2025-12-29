@@ -4,23 +4,22 @@ from utils import preprocess_image
 import os
 import matplotlib.pyplot as plt
 from PIL import Image
-import numpy as np
 from io import BytesIO
-from models import BurrahMobileNet
 from utils import labels
+from models import BurrahMobileNet
 
 
 model = BurrahMobileNet()
 model.eval()
 state_dict_path = "src/weights/burrah_mobilenet_v1.pth"
+
 if not state_dict_path in os.listdir():
 	#TODO: implement loading from internet
 	pass
 
 model.load_state_dict(torch.load(state_dict_path))
 
-model = torch.load("src/app/burrah_mobilenet.pkl", weights_only=False)
-exit()
+
 def recoganize_image(image: Image.Image):
 	image_transfomed = preprocess_image(image).float()
 	with torch.no_grad():
