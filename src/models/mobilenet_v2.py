@@ -92,7 +92,6 @@ class BurrahMobileNet(torch.nn.Module):
     def __init__(self):
         super().__init__()
 
-
         self.bottlenek_config=[# t, c,   n, s
                                 [1, 16,  1, 1],
                                 [6, 24,  2, 2],
@@ -146,14 +145,25 @@ if __name__=='__main__':
     # model.load_state_dict(torch.load("weights/mobilenet_v2-b0353104.pth"))
     # torch.save(model.state_dict(), "weights/burrah_mobilenet_v1.pth")
     # model.load_state_dict(new_dict)
-    model.load_state_dict(torch.load("weights/burrah_mobilenet_v1.pth"))
+    model.load_state_dict(torch.load("src/weights/burrah_mobilenet_v1.pth"))
     model.eval()
-    torch.save(model, "app/burrah_mobilenet.pkl")
+    torch.save(model, "src/weights/burrah_mobilenet.pkl")
     
-    image_wp = Image.open('../sample_images/hen.jpeg')
+    image_wp = Image.open('sample_images/hen.jpeg')
     # image_wp = Image.open('sample_images/dog.jpg')
-    image = preprocess_image(image_wp).float()
+    image = torch.tensor(preprocess_image(image_wp)).float()
     output = torch.softmax(model(image), dim=1)
+    torch.onnx.export(model, 
+                      (image,), 
+                      "BurrahMobileNet.onnx",
+                      input_names=["input"], 
+                      output_names=["output"],
+                      dynamic_axes={
+                      "input": {0: "batch"},
+                      "output": {0: "batch"},
+                      },
+                      dynamo=False
+                    )
     label = int(torch.argmax(output).item())
     label = labels[label]
     print(f"Predicted {label} with {torch.max(output)*100:1f}% probablity.") 

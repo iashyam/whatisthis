@@ -1,6 +1,5 @@
 from PIL import Image
 import numpy as np
-import torch
 
 def preprocess_image(img, target_size=224):
     
@@ -26,6 +25,7 @@ def preprocess_image(img, target_size=224):
     # HWC to CHW
     img_np = np.transpose(img_np, (2, 0, 1))
     
+    return img_np
     # Convert to tensor
     img_tensor = torch.tensor(img_np).unsqueeze(0)
     return img_tensor.float()

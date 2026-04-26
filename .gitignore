@@ -6,9 +6,11 @@ dist/
 wheels/
 *.egg-info
 *.whl
+*.DS_Store
 
 # Virtual environments
 .venv
+.export
 uploads
 
 #data
