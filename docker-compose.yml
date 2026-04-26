@@ -6,30 +6,32 @@ services:
     restart: unless-stopped
     volumes:
       - ./uploads:/app/uploads
+    ports:
+      - 5911:5911
     environment:
       - PYTHONUNBUFFERED=1
 
-  caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    ports:
-      - "80:80" # Exposed locally for testing, optional
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - app
-
-  tunnel:
-    image: cloudflare/cloudflared:latest
-    restart: unless-stopped
-    environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
-    command: tunnel --no-autoupdate run
-    depends_on:
-      - caddy
-
-volumes:
-  caddy_data:
-  caddy_config:
+  # caddy:
+  #   image: caddy:latest
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80" # Exposed locally for testing, optional
+  #   volumes:
+  #     - ./Caddyfile:/etc/caddy/Caddyfile
+  #     - caddy_data:/data
+  #     - caddy_config:/config
+  #   depends_on:
+  #     - app
+  #
+#   tunnel:
+#     image: cloudflare/cloudflared:latest
+#     restart: unless-stopped
+#     environment:
+#       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+#     command: tunnel --no-autoupdate run
+#     depends_on:
+#       - caddy
+#
+# volumes:
+#   caddy_data:
+#   caddy_config:
