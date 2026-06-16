@@ -121,10 +121,11 @@
                                     <p class="result-label-text">Detected</p>
                                     <p class="result-label">${data.label}</p>
                                 </div>
-                            </div>`;
+                            </div>
+                            <button class="close-btn" onclick="resetUI()">&times; Try Another</button>`;
                         resultEl.classList.add('result-success');
                     } else {
-                        resultEl.innerHTML = `<div class="result-inner"><span class="result-icon error-icon">!</span><p class="result-label">${data.error || 'Unknown error'}</p></div>`;
+                        resultEl.innerHTML = `<div class="result-inner"><span class="result-icon error-icon">!</span><p class="result-label">${data.error || 'Unknown error'}</p></div><button class="close-btn" onclick="resetUI()">&times; Try Another</button>`;
                         resultEl.classList.add('result-error');
                     }
                 })
@@ -133,10 +134,22 @@
                     document.querySelector('.btn-text').textContent = 'Analyze Image';
                     uploadBtn.disabled = false;
                     const resultEl = document.getElementById('result');
-                    resultEl.innerHTML = '<div class="result-inner"><span class="result-icon error-icon">!</span><p class="result-label">Upload failed</p></div>';
+                    resultEl.innerHTML = '<div class="result-inner"><span class="result-icon error-icon">!</span><p class="result-label">Upload failed</p></div><button class="close-btn" onclick="resetUI()">&times; Try Another</button>';
                     resultEl.classList.add('result-error');
                 });
         });
+        function resetUI() {
+            const resultEl = document.getElementById('result');
+            resultEl.innerHTML = '';
+            resultEl.className = 'result-area';
+            preview.style.display = 'none';
+            preview.src = '#';
+            dropContent.style.display = '';
+            dropArea.classList.remove('has-image');
+            uploadBtn.disabled = true;
+            fileElem.value = '';
+            file = null;
+        }
     </script>
 </body>
 </html>
