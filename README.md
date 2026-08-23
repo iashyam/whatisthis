@@ -6,6 +6,8 @@ A from-scratch implementation of vision models for image classification, served 
 
 Upload any image, get a classification label from 1000 ImageNet categories. The backend runs custom-trained vision models built entirely in PyTorch — no pretrained backbone dependencies at inference time.
 
+![demo](demo.png)
+
 ## Models
 
 | Model | Paper | Weights |
