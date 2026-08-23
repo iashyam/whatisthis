@@ -26,7 +26,4 @@ def preprocess_image(img, target_size=224):
     img_np = np.transpose(img_np, (2, 0, 1))
     
     return img_np
-    # Convert to tensor
-    img_tensor = torch.tensor(img_np).unsqueeze(0)
-    return img_tensor.float()
 
